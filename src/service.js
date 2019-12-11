@@ -249,5 +249,14 @@ export default {
             console.log("response===", response);
             return response;
         }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    uploadImage:(obj) => {
+        console.log("data", obj.get('file_name'));
+        return axios.post(config.baseApiUrl + "User/uploadUserImage", obj)
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
     }
 }

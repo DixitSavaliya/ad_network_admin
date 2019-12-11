@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { EventEmitter } from '../../event';
 import { config } from '../../config';
 import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -20,11 +21,19 @@ class DefaultHeader extends Component {
   constructor(props) {
     super(props);
   this.state = {
-    user : JSON.parse(localStorage.getItem('ad_network_user'))
+    user : JSON.parse(localStorage.getItem('ad_network_user')),
+    file:''
   }
    
     this.logout = this.logout.bind(this);
     this.path = "http://localhost/ad_network/Images/";
+
+    EventEmitter.subscribe('picture', (data) => {
+      console.log("data", data);
+      this.setState({
+          file:this.state.file = data
+      })
+  });
   }
 
   logout() {
@@ -73,7 +82,7 @@ class DefaultHeader extends Component {
             <DropdownToggle nav>
               {
                 this.state.user ? (
-                  <img src={config.baseApiUrl + this.state.user.avatar} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                  <img src={config.baseApiUrl + this.state.file} className="img-avatar" alt="admin@bootstrapmaster.com" />
                 ) : (
 
                   <img src={'   ../../assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />

@@ -77,3 +77,9 @@ th.center {
 .lt span {
   padding: 9px !important;
 }
+.table td {
+    /* padding: 0.75rem; */
+    /* vertical-align: top; */
+    border-top: 1px solid #c8ced3;
+    cursor: pointer;
+}

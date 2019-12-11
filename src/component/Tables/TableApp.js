@@ -106,22 +106,6 @@ export default class TableApp extends React.Component {
             });
     }
 
-    // checkAllHandler(event) {
-    //     console.log("data", event.target.checked, event.target.id);
-    //     if (this.state.paginationdata.length) {
-    //         if (event.target.checked == true) {
-    //             this.setState({
-    //                 check: this.state.check = true
-    //             })
-    //             //   EventEmitter.dispatch('checked', this.state.check);
-    //         } else if (event.target.checked == false) {
-    //             this.setState({
-    //                 check: this.state.check = false
-    //             })
-    //             //   EventEmitter.dispatch('check', this.state.check);
-    //         }
-    //     }
-    // }
 
     editAppData(id) {
         window.location.href = "/#/EditApp/" + id;
@@ -148,7 +132,7 @@ export default class TableApp extends React.Component {
                     .then((findresponse) => {
                         if (findresponse) {
                             console.log("deleteAppData response===", findresponse);
-                            Swal.fire("App Deleted Successfully!", "", "success");
+                            Swal.fire("App InActiveted Successfully!", "", "success");
                             this.getApplicationPageData();
                         } else {
                             Swal.fire("Something went wrong!", "", "warning");

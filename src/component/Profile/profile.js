@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
 import API from '../../service';
+import { EventEmitter } from '../../event';
+import {config} from '../../config';
+import './profile.css';
 import {
     Badge,
     Button,
@@ -42,10 +45,12 @@ class Profile extends React.Component {
             email_id: '',
             email_iderror: '',
             mobile_no: '',
-            mobile_noerror: ''
+            mobile_noerror: '',
+            selectedFile: null
         }
         this.handleChangeEvent = this.handleChangeEvent.bind(this);
         this.UpdateProfile = this.UpdateProfile.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
 
     }
 
@@ -67,25 +72,11 @@ class Profile extends React.Component {
                         first_name: this.state.user.first_name,
                         last_name: this.state.user.last_name,
                         email_id: this.state.user.email_id,
-                        mobile_no: this.state.user.mobile_no
+                        mobile_no: this.state.user.mobile_no,
+                        selectedFile:this.state.user.avatar
                     })
+                    EventEmitter.dispatch('picture', this.state.user.avatar);
                     localStorage.setItem('ad_network_user', JSON.stringify(this.state.user))
-                } else {
-                    // Swal.fire("Something went wrong!", "", "warning");
-                }
-            }).catch((err) => {
-                // Swal.fire("Something went wrong!", "", "warning");
-            });
-
-        const obj1 = {
-            id: this.state.auth.id,
-            group: this.state.auth.user_group,
-            type:this.state.auth.type
-        }
-        API.getUserDetailsByUserGroupId(obj1)
-            .then((findresponse) => {
-                if (findresponse) {
-                    console.log("getUserDetailsByUserGroupId response===", findresponse);
                 } else {
                     // Swal.fire("Something went wrong!", "", "warning");
                 }
@@ -100,6 +91,31 @@ class Profile extends React.Component {
         const state = this.state
         state[event.target.name] = event.target.value;
         this.setState(state);
+    }
+
+    onChangeHandler(event) {
+        this.setState({
+            selectedFile: this.state.selectedFile = event.target.files[0].name,
+            loaded: 0,
+        })
+        console.log("file", this.state.selectedFile);
+        let data = new FormData();
+        data.append('file_name', event.target.files[0]);
+        data.append('user_id',this.state.auth.id)
+        API.uploadImage(data)
+            .then((findresponse) => {
+                console.log("uploadImage response===", findresponse);
+                if (findresponse) {
+                    this.setState({
+                        selectedFile: this.state.selectedFile = findresponse.data.data
+                    })
+                    console.log("selectfile", this.state.selectedFile);
+                } else {
+                    console.log("error");
+                }
+            }).catch((err) => {
+                console.log("err", err);
+            });
     }
 
     /** validation of login form */
@@ -154,7 +170,8 @@ class Profile extends React.Component {
                 mobile_no: this.state.mobile_no,
                 id: this.state.auth.id,
                 username: this.state.auth.username,
-                create_by:this.state.auth.id
+                create_by: this.state.auth.id,
+
             }
             console.log("obj", obj);
             API.updateUserDetail(obj)
@@ -182,6 +199,32 @@ class Profile extends React.Component {
                                 <small> Form</small>
                             </CardHeader>
                             <CardBody>
+                                <Row>
+                                    <Col xs="6">
+                                        <FormGroup className="img-upload">
+                                            {
+                                                this.state.selectedFile ? (
+                                                    <div>
+                                                        <img className="pic" src={config.baseApiUrl + this.state.selectedFile} />
+                                                    </div>
+                                                ) : (null)
+                                            }
+                                            <p>Select File:</p>
+                                            <Label className="imag" for="file-input"><i className="fa fa-upload fa-lg"  ></i></Label>
+                                            <Input
+                                                id="file-input"
+                                                type="file"
+                                                className="form-control"
+                                                name="file"
+                                                onChange={this.onChangeHandler}
+                                            />
+
+                                            <div style={{ fontSize: 12, color: "red" }}>
+                                                {this.state.selectedFileerror}
+                                            </div>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
                                 <Row>
                                     <Col xs="6">
                                         <FormGroup>

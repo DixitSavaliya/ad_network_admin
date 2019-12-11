@@ -416,6 +416,47 @@ class CreateApp extends React.Component {
         return (
             <div className="animated fadeIn">
                 <Row>
+                    <Col xs="4" sm="4" md="4" lg="4" xl="4">
+                        {
+                            this.props.location.pathname.split('/')[2] ? (
+                                <div>
+                                    <Link to="/ListApp"><Button className="mb-2 mr-2" color="primary">
+                                        Go back
+                                </Button></Link>
+                                    {
+                                        this.props.location.pathname.split('/')[2] ? (
+                                            <Button
+                                                color="primary"
+                                                className="mb-2 mr-2"
+                                                onClick={this.EditApp}
+                                            >
+                                                Update
+                                        </Button>
+                                        ) : (
+                                                <Button
+                                                    color="primary"
+                                                    className="mb-2 mr-2"
+                                                    onClick={this.CreateApp}
+                                                >
+                                                    Create
+                                        </Button>
+                                            )
+                                    }
+                                </div>
+                            ) : (
+                                    <Button
+                                        color="primary"
+                                        className="mb-2 mr-2"
+                                        onClick={this.CreateApp}
+                                    >
+                                        Create
+                        </Button>
+                                )
+                        }
+                    </Col>
+
+                </Row>
+                <Row>
                     <Col xs="12" sm="12" md="12" lg="12" xl="12">
                         <Card>
                             <CardHeader>
@@ -609,14 +650,14 @@ class CreateApp extends React.Component {
                                         <Switch onChange={this.handleChange} checked={this.state.checked} />
                                     </Col>
                                 </Row>
-                                {
+                                {/* {
                                     this.state.updateRightBtn == false ? (
 
                                         <Button type="button" size="sm" color="primary" onClick={this.CreateApp}>Create</Button>
                                     ) : (
                                             <Button type="button" size="sm" color="primary" onClick={this.EditApp}>Update</Button>
                                         )
-                                }
+                                } */}
                             </CardBody>
                         </Card>
                     </Col>
