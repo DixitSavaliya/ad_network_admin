@@ -1,0 +1,2 @@
+(this.webpackJsonpad_network=this.webpackJsonpad_network||[]).push([[26],{810:function(t,e,n){"use strict";n.r(e);var a=n(152),r=n(153),c=n(156),u=n(154),i=n(155),s=n(3),o=n.n(s),l=function(t){function e(t){var n;return Object(a.a)(this,e),(n=Object(c.a)(this,Object(u.a)(e).call(this,t))).state={},n}return Object(i.a)(e,t),Object(r.a)(e,[{key:"render",value:function(){return o.a.createElement("div",null,"Hello Publisher")}}]),e}(o.a.Component);e.default=l}}]);
+//# sourceMappingURL=26.f3affec1.chunk.js.map

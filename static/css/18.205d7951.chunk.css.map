@@ -1,0 +1,1 @@
+{"version":3,"sources":["profile.css"],"names":[],"mappings":"AAAA,kBACI,YACJ,CACA,QACI,WAAY,CACZ,kBACJ,CACA,2BACI,cACJ","file":"18.205d7951.chunk.css","sourcesContent":[".img-upload input {\n    display:none;\n}\nimg.pic {\n    width: 100px;\n    border-radius: 60px;\n}\n.imag i.fa.fa-upload.fa-lg {\n    font-size: 38px;\n}"]}
