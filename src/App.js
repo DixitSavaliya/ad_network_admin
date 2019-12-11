@@ -26,7 +26,7 @@ class App extends Component {
 
   render() {
     return (
-      <HashRouter history={history}>
+      <HashRouter>
           <React.Suspense fallback={loading()}>
             <Switch  history={history}>
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
