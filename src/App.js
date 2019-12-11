@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import './App.scss';
 import history from './history';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
@@ -26,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <HashRouter history={history}>
+      <BrowserRouter history={history}>
           <React.Suspense fallback={loading()}>
             <Switch  history={history}>
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
@@ -41,7 +42,7 @@ class App extends Component {
               }
             </Switch>
           </React.Suspense>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
