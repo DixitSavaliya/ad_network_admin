@@ -177,5 +177,77 @@ export default {
                 console.log("response===", response);
                 return response;
             }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    uploadIcon:(data) => {
+        return axios.post(config.baseApiUrl + "Application/uploadApplicationIcon", data)
+            .then(response => {
+                console.log("response===", response);
+                return response;
+            }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    createApp:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/insertApplication", obj)
+            .then(response => {
+                console.log("response===", response);
+                return response;
+            }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    getApplication:() => {
+        return axios.post(config.baseApiUrl + "Application/getApplication")
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    getApplicationCountData:() => {
+        return axios.post(config.baseApiUrl + "Application/countApplication")
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    getApplicationPageDataPg:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/applicationByPg", obj)
+            .then(response => {
+                console.log("response===", response);
+                return response;
+            }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    searchAppData:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/applicationBySearch", obj)
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    getApp:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/getApplication", obj)
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    editApp:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/updateApplication", obj)
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
+    },
+
+    deleteAppData:(obj) => {
+        return axios.post(config.baseApiUrl + "Application/deleteApplication", obj)
+        .then(response => {
+            console.log("response===", response);
+            return response;
+        }).catch({ status: 500, message: 'Internal Server Error' });
     }
 }
